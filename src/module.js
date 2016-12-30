@@ -5,6 +5,7 @@ export { default as processColor } from './modules/processColor';
 export { render, unmountComponentAtNode } from 'react-dom';
 
 // APIs
+export { default as Alert } from './apis/Alert';
 export { default as Animated } from './apis/Animated';
 export { default as AppRegistry } from './apis/AppRegistry';
 export { default as AppState } from './apis/AppState';
