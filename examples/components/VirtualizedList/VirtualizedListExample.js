@@ -1,6 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component , PureComponent } from 'react'
 import { VirtualizedList, View, Text, StyleSheet } from 'react-native'
 import { storiesOf } from '@kadira/storybook';
+
+class PureView extends PureComponent{
+  render(){
+    return <View style={{height:50}}><Text>{this.props.item.key} - {this.props.index}</Text></View>
+  }
+}
 
 class VirtualizedListExample extends Component {
   constructor (props) {
@@ -14,20 +20,26 @@ class VirtualizedListExample extends Component {
     this.getItemLayout = this.getItemLayout.bind(this)
   }
 
+  keyExtractor = (items, index) =>
+        String(index);
+
   getItemLayout (data, index) {
     return { length: 50, offset: 50 * index, index: index }
   }
 
   renderItem ({item, index}) {
-    return <View><Text>{item.key} - {index}</Text></View>
+    return <PureView item={item} index={index}/>
+    // return <View style={{height:52}}><Text>{item.key} - {index}</Text></View>
   }
 
   render () {
-    return <VirtualizedList
+    return <VirtualizedList            
       style={styles.container}
       data={this.state.data}
+      windowSize={5}
       renderItem={this.renderItem}
       getItemLayout={this.getItemLayout}
+      keyExtractor={this.keyExtractor}
     />
   }
 }
