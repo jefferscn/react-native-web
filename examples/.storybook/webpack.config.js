@@ -4,6 +4,7 @@ const webpack = require('webpack')
 const DEV = process.env.NODE_ENV !== 'production';
 
 module.exports = {
+  devtool: 'source-map',
   module: {
     loaders: [
       {
