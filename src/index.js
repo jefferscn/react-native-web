@@ -72,6 +72,7 @@ const ReactNative = {
   AppState,
   AsyncStorage,
   BackAndroid,
+  BackHandler: BackAndroid,
   Clipboard,
   Dimensions,
   Easing,
