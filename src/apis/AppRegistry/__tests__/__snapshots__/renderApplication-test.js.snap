@@ -54,7 +54,7 @@ exports[`apis/AppRegistry/renderApplication getApplication 3`] = `
 .rn-borderLeftWidth-gxnn5r{border-left-width:0px}
 .rn-boxSizing-deolkf{box-sizing:border-box}
 .rn-display-6koalj{display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;display:flex}
-.rn-display-xoduu5{display:-webkit-box;display:-moz-box;display:-ms-inline-flexbox;display:-webkit-inline-flex;display:inline-flex}
+.rn-display-xoduu5{display:-webkit-inline-box;display:-moz-inline-box;display:-ms-inline-flexbox;display:-webkit-inline-flex;display:inline-flex}
 .rn-display-1471scf{display:inline}
 .rn-flexShrink-1qe8dj5{-webkit-flex-shrink:0;flex-shrink:0}
 .rn-flexShrink-1wbh5a2{-webkit-flex-shrink:1;flex-shrink:1}
@@ -89,13 +89,12 @@ exports[`apis/AppRegistry/renderApplication getApplication 3`] = `
 .rn-whiteSpace-q42fyq{white-space:pre-wrap}
 .rn-whiteSpace-3s2u2q{white-space:nowrap}
 .rn-userSelect-lrvibr{-moz-user-select:none;-ms-user-select:none;-webkit-user-select:none;user-select:none}
-.rn-cursor-1loqt21{cursor:pointer}
-.rn-cursor-7q8q6z{cursor:default}
 .rn-maxWidth-dnmrzs{max-width:100%}
 .rn-maxWidth-146iojx{max-width:300px}
 .rn-overflowX-11yh6sk{overflow-x:hidden}
 .rn-overflowY-buy8e9{overflow-y:hidden}
 .rn-textOverflow-1udbk01{text-overflow:ellipsis}
+.rn-touchAction-1gvxusu{touch-action:manipulate}
 .rn-opacity-6dt33c{opacity:1}
 .rn-justifyContent-a2tzq0{-webkit-box-pack:justify;-webkit-justify-content:space-around;justify-content:space-around}
 .rn-fontSize-1inkyih{font-size:17px}
