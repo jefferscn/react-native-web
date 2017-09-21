@@ -84,22 +84,9 @@ const createDOMElement = (component, props) => {
   // use equivalent platform elements where possible
   const accessibilityComponent = AccessibilityUtil.propsToAccessibilityComponent(props);
   const Component = accessibilityComponent || component;
-<<<<<<< HEAD
-  const domProps = createDOMProps(props);
-
-  // normalize DOM events to match React Native events
-  // TODO: move this out of the render path
-  Object.keys(domProps).forEach((prop) => {
-    const isEventHandler = typeof prop === 'function' && eventHandlerNames[prop];
-    if (isEventHandler) {
-      domProps[prop] = wrapEventHandler(prop);
-    }
-  });
-=======
   const domProps = createDOMProps(Component, props);
 
   adjustProps(domProps);
->>>>>>> alert/feature/alert
 
   return <Component {...domProps} />;
 };

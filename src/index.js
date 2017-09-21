@@ -37,10 +37,7 @@ import {
   Image,
   ListView,
   Modal,
-<<<<<<< HEAD
-=======
   Picker,
->>>>>>> alert/feature/alert
   ProgressBar,
   RefreshControl,
   ScrollView,

@@ -64,15 +64,6 @@ const createDOMProps = (component, props, styleResolver) => {
     props = emptyObject;
   }
 
-<<<<<<< HEAD
-const createDOMProps = (rnProps, resolveStyle) => {
-  if (!resolveStyle) {
-    resolveStyle = resolver;
-  }
-
-  const props = rnProps || emptyObject;
-=======
->>>>>>> alert/feature/alert
   const {
     accessibilityLabel,
     accessibilityLiveRegion,
@@ -121,29 +112,17 @@ const createDOMProps = (rnProps, resolveStyle) => {
   if (component === 'a' && domProps.target === '_blank') {
     domProps.rel = `${domProps.rel || ''} noopener noreferrer`;
   }
-<<<<<<< HEAD
-  if (role && role.constructor === String) {
-=======
   if (role && role.constructor === String && role !== 'label') {
->>>>>>> alert/feature/alert
     domProps.role = role;
   }
   if (style) {
     domProps.style = style;
   }
-<<<<<<< HEAD
-  if (testID && testID.constructor === String) {
-    domProps['data-testid'] = testID;
-  }
-  if (type && type.constructor === String) {
-    domProps.type = type;
-=======
   if (tabIndex) {
     domProps.tabIndex = tabIndex;
   }
   if (testID && testID.constructor === String) {
     domProps['data-testid'] = testID;
->>>>>>> alert/feature/alert
   }
 
   return domProps;
