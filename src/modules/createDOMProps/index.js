@@ -1,28 +1,44 @@
+/**
+ * Copyright (c) 2015-present, Nicolas Gallagher.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * @noflow
+ */
+
 import AccessibilityUtil from '../AccessibilityUtil';
 import StyleSheet from '../../apis/StyleSheet';
 import StyleRegistry from '../../apis/StyleSheet/registry';
 
 const emptyObject = {};
 
-const styles = StyleSheet.create({
-  buttonReset: {
+const resetStyles = StyleSheet.create({
+  ariaButton: {
+    cursor: 'pointer'
+  },
+  button: {
     appearance: 'none',
     backgroundColor: 'transparent',
     color: 'inherit',
     font: 'inherit',
     textAlign: 'inherit'
   },
-  linkReset: {
+  heading: {
+    font: 'inherit'
+  },
+  link: {
     backgroundColor: 'transparent',
     color: 'inherit',
     textDecorationLine: 'none'
   },
-  listReset: {
+  list: {
     listStyle: 'none'
   }
 });
 
-const pointerEventStyles = StyleSheet.create({
+const pointerEventsStyles = StyleSheet.create({
   auto: {
     pointerEvents: 'auto'
   },
@@ -37,24 +53,35 @@ const pointerEventStyles = StyleSheet.create({
   }
 });
 
-const resolver = style => StyleRegistry.resolve(style);
+const defaultStyleResolver = style => StyleRegistry.resolve(style);
 
+const createDOMProps = (component, props, styleResolver) => {
+  if (!styleResolver) {
+    styleResolver = defaultStyleResolver;
+  }
+
+  if (!props) {
+    props = emptyObject;
+  }
+
+<<<<<<< HEAD
 const createDOMProps = (rnProps, resolveStyle) => {
   if (!resolveStyle) {
     resolveStyle = resolver;
   }
 
   const props = rnProps || emptyObject;
+=======
+>>>>>>> alert/feature/alert
   const {
     accessibilityLabel,
     accessibilityLiveRegion,
-    accessible,
     importantForAccessibility,
     pointerEvents,
-    style: rnStyle,
+    style: providedStyle,
     testID,
-    type,
     /* eslint-disable */
+    accessible,
     accessibilityComponentType,
     accessibilityRole,
     accessibilityTraits,
@@ -62,19 +89,25 @@ const createDOMProps = (rnProps, resolveStyle) => {
     ...domProps
   } = props;
 
+  const isDisabled = AccessibilityUtil.isDisabled(props);
   const role = AccessibilityUtil.propsToAriaRole(props);
-  const pointerEventStyle = pointerEvents !== undefined && pointerEventStyles[pointerEvents];
+  const tabIndex = AccessibilityUtil.propsToTabIndex(props);
   const reactNativeStyle = [
-    (role === 'button' && styles.buttonReset) ||
-      (role === 'link' && styles.linkReset) ||
-      (role === 'list' && styles.listReset),
-    rnStyle,
-    pointerEventStyle
+    component === 'a' && resetStyles.link,
+    component === 'button' && resetStyles.button,
+    role === 'heading' && resetStyles.heading,
+    component === 'ul' && resetStyles.list,
+    role === 'button' && !isDisabled && resetStyles.ariaButton,
+    providedStyle,
+    pointerEvents && pointerEventsStyles[pointerEvents]
   ];
-  const { className, style } = resolveStyle(reactNativeStyle) || emptyObject;
+  const { className, style } = styleResolver(reactNativeStyle);
 
-  if (accessible === true) {
-    domProps.tabIndex = AccessibilityUtil.propsToTabIndex(props);
+  if (isDisabled) {
+    domProps['aria-disabled'] = true;
+  }
+  if (importantForAccessibility === 'no-hide-descendants') {
+    domProps['aria-hidden'] = true;
   }
   if (accessibilityLabel && accessibilityLabel.constructor === String) {
     domProps['aria-label'] = accessibilityLabel;
@@ -85,28 +118,35 @@ const createDOMProps = (rnProps, resolveStyle) => {
   if (className && className.constructor === String) {
     domProps.className = domProps.className ? `${domProps.className} ${className}` : className;
   }
-  if (importantForAccessibility === 'no-hide-descendants') {
-    domProps['aria-hidden'] = true;
+  if (component === 'a' && domProps.target === '_blank') {
+    domProps.rel = `${domProps.rel || ''} noopener noreferrer`;
   }
+<<<<<<< HEAD
   if (role && role.constructor === String) {
+=======
+  if (role && role.constructor === String && role !== 'label') {
+>>>>>>> alert/feature/alert
     domProps.role = role;
-    if (role === 'button') {
-      domProps.type = 'button';
-    } else if (role === 'link' && domProps.target === '_blank') {
-      domProps.rel = `${domProps.rel || ''} noopener noreferrer`;
-    }
   }
   if (style) {
     domProps.style = style;
   }
+<<<<<<< HEAD
   if (testID && testID.constructor === String) {
     domProps['data-testid'] = testID;
   }
   if (type && type.constructor === String) {
     domProps.type = type;
+=======
+  if (tabIndex) {
+    domProps.tabIndex = tabIndex;
+  }
+  if (testID && testID.constructor === String) {
+    domProps['data-testid'] = testID;
+>>>>>>> alert/feature/alert
   }
 
   return domProps;
 };
 
-module.exports = createDOMProps;
+export default createDOMProps;

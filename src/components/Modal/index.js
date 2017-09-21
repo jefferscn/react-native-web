@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import ModalPropTypes from './ModalPropTypes';
@@ -108,3 +109,7 @@ const styles = StyleSheet.create({
 });
 
 export default Modal;
+=======
+import UnimplementedView from '../UnimplementedView';
+export default UnimplementedView;
+>>>>>>> alert/feature/alert

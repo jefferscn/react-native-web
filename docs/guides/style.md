@@ -192,7 +192,7 @@ inline styles.
 
 All this allows React Native for Web to support the rich functionality of React
 Native styles (including RTL layouts and `setNativeProps`) while providing one
-of the [fastest](https://github.com/necolas/react-native-web/blob/master/performance/README.md),
+of the [fastest](https://github.com/necolas/react-native-web/blob/master/benchmarks/README.md),
 safest, and most efficient styles-in-JavaScript solutions.
 
 ## FAQs
@@ -225,7 +225,8 @@ User Agent styles from (pseudo-)elements beyond the reach of React (e.g.,
 `html`, `body`) or inline styles (e.g., `::-moz-focus-inner`). The rest is
 handled at the component-level.
 
-### What about using DevTools?
+### What about using Dev Tools?
 
-It's recommended that you rely more on React DevTools and live/hot-reloading
-rather than inspecting and editing the DOM directly.
+React Dev Tools supports inspecting and editing of React Native styles. It's
+recommended that you rely more on React Dev Tools and live/hot-reloading rather
+than inspecting and editing the DOM directly.

@@ -10,6 +10,7 @@ import {
   processColor,
 
   // APIs
+  Alert,
   Animated,
   AppRegistry,
   AppState,
@@ -32,17 +33,26 @@ import {
   // components
   ActivityIndicator,
   Button,
+  FlatList,
   Image,
   ListView,
   Modal,
+<<<<<<< HEAD
+=======
+  Picker,
+>>>>>>> alert/feature/alert
   ProgressBar,
+  RefreshControl,
   ScrollView,
+  SectionList,
+  Slider,
   StatusBar,
   Switch,
   Text,
   TextInput,
   Touchable,
   TouchableHighlight,
+  TouchableNativeFeedback,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
@@ -52,6 +62,7 @@ import {
   ColorPropType,
   EdgeInsetsPropType,
   PointPropType,
+  TextPropTypes,
   ViewPropTypes
 } from './module';
 
@@ -67,6 +78,7 @@ const ReactNative = {
   processColor,
 
   // APIs
+  Alert,
   Animated,
   AppRegistry,
   AppState,
@@ -90,17 +102,26 @@ const ReactNative = {
   // components
   ActivityIndicator,
   Button,
+  FlatList,
   Image,
   ListView,
   Modal,
+<<<<<<< HEAD
+=======
+  Picker,
+>>>>>>> alert/feature/alert
   ProgressBar,
+  RefreshControl,
   ScrollView,
+  SectionList,
+  Slider,
   StatusBar,
   Switch,
   Text,
   TextInput,
   Touchable,
   TouchableHighlight,
+  TouchableNativeFeedback,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
@@ -110,6 +131,7 @@ const ReactNative = {
   ColorPropType,
   EdgeInsetsPropType,
   PointPropType,
+  TextPropTypes,
   ViewPropTypes
 };
 
