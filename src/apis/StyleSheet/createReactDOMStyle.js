@@ -190,6 +190,7 @@ const createReducer = (style, styleProps) => {
           resolvedStyle.flex = value;
           resolvedStyle.flexGrow = `${value} !important`;
           resolvedStyle.flexShrink = '1 !important';
+          resolvedStyle.flexBasis = 'auto !important';
         } else if (value === 0) {
           resolvedStyle.flexGrow = '0 !important';
           resolvedStyle.flexShrink = '0 !important';
