@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import Radium from 'radium'
+import Radium from 'radium';
 import React from 'react';
 import View from '../View/radium';
 
-const Box = ({ color, fixed = false, layout = 'column', outer = false, ...other }) =>
+const Box = ({ color, fixed = false, layout = 'column', outer = false, ...other }) => (
   <View
     {...other}
     style={[
@@ -12,7 +12,8 @@ const Box = ({ color, fixed = false, layout = 'column', outer = false, ...other 
       layout === 'row' && styles.row,
       outer && styles.outer
     ]}
-  />;
+  />
+);
 
 const styles = {
   outer: {

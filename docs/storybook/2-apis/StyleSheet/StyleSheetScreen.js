@@ -2,12 +2,18 @@
  * @flow
  */
 
-import { storiesOf } from '@kadira/storybook';
 import React from 'react';
-import UIExplorer, { AppText, Code, Description, DocItem, Section } from '../../ui-explorer';
+import UIExplorer, {
+  AppText,
+  Code,
+  Description,
+  DocItem,
+  Section,
+  storiesOf
+} from '../../ui-explorer';
 
-const StyleSheetScreen = () =>
-  <UIExplorer title="StyleSheet" url="apis/StyleSheet">
+const StyleSheetScreen = () => (
+  <UIExplorer title="StyleSheet" url="2-apis/StyleSheet">
     <Description>
       The StyleSheet abstraction converts predefined styles to (vendor-prefixed) CSS without
       requiring a compile-time step. Styles that cannot be resolved outside of the render loop
@@ -84,6 +90,7 @@ StyleSheet.flatten([styles.listItem, styles.selectedListItem]);`
 
       <DocItem name="hairlineWidth" typeInfo="number" />
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 storiesOf('APIs', module).add('StyleSheet', StyleSheetScreen);

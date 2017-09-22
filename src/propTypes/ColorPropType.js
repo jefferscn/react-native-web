@@ -10,6 +10,9 @@
  * @flow
  */
 
+const isWebColor = (color: string) =>
+  color === 'currentcolor' || color === 'inherit' || color.indexOf('var(') === 0;
+
 const colorPropType = function(isRequired, props, propName, componentName, location, propFullName) {
   const normalizeColor = require('normalize-css-color');
   const color = props[propName];
@@ -35,7 +38,8 @@ const colorPropType = function(isRequired, props, propName, componentName, locat
     return;
   }
 
-  if (color === 'currentcolor' || color === 'inherit') {
+  if (typeof color === 'string' && isWebColor(color)) {
+    // Web supports additional color keywords and custom property values. Ignore them.
     return;
   }
 

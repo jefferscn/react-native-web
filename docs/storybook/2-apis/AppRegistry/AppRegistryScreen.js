@@ -3,11 +3,17 @@
  */
 
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
-import UIExplorer, { AppText, Code, Description, DocItem, Section } from '../../ui-explorer';
+import UIExplorer, {
+  AppText,
+  Code,
+  Description,
+  DocItem,
+  Section,
+  storiesOf
+} from '../../ui-explorer';
 
-const AppRegistryScreen = () =>
-  <UIExplorer title="AppRegistry" url="apis/AppRegistry">
+const AppRegistryScreen = () => (
+  <UIExplorer title="AppRegistry" url="2-apis/AppRegistry">
     <Description>
       <AppText>
         AppRegistry is the control point for registering, running, prerendering, and unmounting all
@@ -100,6 +106,7 @@ const AppRegistryScreen = () =>
         typeInfo="(rootTag: HTMLElement) => void"
       />
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 storiesOf('APIs', module).add('AppRegistry', AppRegistryScreen);

@@ -18,20 +18,21 @@ import PropSecureTextEntry from './examples/PropSecureTextEntry';
 import PropSelectTextOnFocus from './examples/PropSelectTextOnFocus';
 import TextInputEvents from './examples/TextInputEvents';
 import TextInputRewrite, { TextInputRewriteInvalidCharacters } from './examples/Rewrite';
+import TouchableWrapper from './examples/TouchableWrapper';
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
 import UIExplorer, {
   AppText,
   Code,
   Description,
   DocItem,
   Section,
+  storiesOf,
   StyleList,
   TextList
 } from '../../ui-explorer';
 
-const TextInputScreen = () =>
-  <UIExplorer title="TextInput" url="components/TextInput">
+const TextInputScreen = () => (
+  <UIExplorer title="TextInput" url="1-components/TextInput">
     <Description>
       <AppText>
         Accessible single- and multi-line text input via a keyboard. Supports features such as
@@ -227,6 +228,12 @@ nativeEvent: { key: keyValue } }`}</Code>{' '}
       />
 
       <DocItem
+        name="onLayout"
+        typeInfo="?function"
+        description="Invoked on mount and layout changes with {x, y, width, height}."
+      />
+
+      <DocItem
         name="onSelectionChange"
         typeInfo="?function"
         description={
@@ -356,7 +363,15 @@ nativeEvent: { key: keyValue } }`}</Code>{' '}
           render: () => <TextInputRewriteInvalidCharacters />
         }}
       />
+
+      <DocItem
+        description="Wrapped in a TouchableWithoutFeedback"
+        example={{
+          render: () => <TouchableWrapper />
+        }}
+      />
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 storiesOf('Components', module).add('TextInput', TextInputScreen);

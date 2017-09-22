@@ -12,11 +12,8 @@ import '../injectResponderEventPlugin';
 
 import AccessibilityUtil from '../AccessibilityUtil';
 import createDOMProps from '../createDOMProps';
-import modality from '../modality';
 import normalizeNativeEvent from '../normalizeNativeEvent';
 import React from 'react';
-
-modality();
 
 /**
  * Ensure event handlers receive an event of the expected shape. The 'button'
@@ -80,15 +77,13 @@ const adjustProps = domProps => {
   }
 };
 
-const createDOMElement = (component, props) => {
+const createElement = (component, props, ...children) => {
   // use equivalent platform elements where possible
   const accessibilityComponent = AccessibilityUtil.propsToAccessibilityComponent(props);
   const Component = accessibilityComponent || component;
   const domProps = createDOMProps(Component, props);
-
   adjustProps(domProps);
-
-  return <Component {...domProps} />;
+  return React.createElement(Component, domProps, ...children);
 };
 
-export default createDOMElement;
+export default createElement;

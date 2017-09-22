@@ -43,9 +43,7 @@ class Button extends Component {
         ]}
         testID={testID}
       >
-        <Text style={[styles.text, disabled && styles.textDisabled]}>
-          {title}
-        </Text>
+        <Text style={[styles.text, disabled && styles.textDisabled]}>{title}</Text>
       </TouchableOpacity>
     );
   }
@@ -57,10 +55,11 @@ const styles = StyleSheet.create({
     borderRadius: 2
   },
   text: {
-    textAlign: 'center',
     color: '#fff',
+    fontWeight: '500',
     padding: 8,
-    fontWeight: '500'
+    textAlign: 'center',
+    textTransform: 'uppercase'
   },
   buttonDisabled: {
     backgroundColor: '#dfdfdf'

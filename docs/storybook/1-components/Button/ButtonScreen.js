@@ -8,11 +8,17 @@ import React from 'react';
 import PropColor from './examples/PropColor';
 import PropDisabled from './examples/PropDisabled';
 import PropOnPress from './examples/PropOnPress';
-import UIExplorer, { AppText, Code, Description, DocItem, Section } from '../../ui-explorer';
-import { storiesOf } from '@kadira/storybook';
+import UIExplorer, {
+  AppText,
+  Code,
+  Description,
+  DocItem,
+  Section,
+  storiesOf
+} from '../../ui-explorer';
 
-const ButtonScreen = () =>
-  <UIExplorer title="Button" url="components/Button">
+const ButtonScreen = () => (
+  <UIExplorer title="Button" url="1-components/Button">
     <Description>
       <AppText>
         A basic button component. Supports a minimal level of customization. You can build your own
@@ -62,6 +68,7 @@ const ButtonScreen = () =>
 
       <DocItem name="title" typeInfo="string" description="Text to display inside the button." />
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 storiesOf('Components', module).add('Button', ButtonScreen);

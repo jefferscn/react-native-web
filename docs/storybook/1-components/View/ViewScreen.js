@@ -8,18 +8,19 @@ import PropPointerEvents from './examples/PropPointerEvents';
 import transformExamples from './examples/transforms';
 import ZIndexExample from './examples/ZIndex';
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
 import UIExplorer, {
   AppText,
   Code,
   Description,
   DocItem,
+  ExternalLink,
   Section,
+  storiesOf,
   StyleList
 } from '../../ui-explorer';
 
-const ViewScreen = () =>
-  <UIExplorer title="View" url="components/View">
+const ViewScreen = () => (
+  <UIExplorer title="View" url="1-components/View">
     <Description>
       <AppText>
         View is the fundamental UI building block. It is a component that supports style, layout
@@ -232,9 +233,9 @@ const ViewScreen = () =>
           <AppText>
             Controls whether the View can be the target of touch events. The enhanced{' '}
             <Code>pointerEvents</Code> modes provided are not part of the CSS spec, therefore,{' '}
-            <Code>pointerEvents</Code> is excluded from <Code>style</Code>.
-            <Code>box-none</Code> preserves pointer events on the element's children;{' '}
-            <Code>box-only</Code> disables pointer events on the element's children.
+            <Code>pointerEvents</Code> is excluded from <Code>style</Code>. <Code>box-none</Code>{' '}
+            preserves pointer events on the element's children; <Code>box-only</Code> disables
+            pointer events on the element's children.
           </AppText>
         }
         example={{
@@ -284,13 +285,20 @@ const ViewScreen = () =>
           render: () => <ZIndexExample />
         }}
       />
-      {transformExamples.map(({ title, render }, i) =>
+      {transformExamples.map(({ title, render }, i) => (
         <DocItem description={title} key={i} example={{ render }} />
-      )}
+      ))}
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 const stylePropTypes = [
+  {
+    label: 'web',
+    name: (
+      <ExternalLink href="https://drafts.csswg.org/css-variables/">Custom properties</ExternalLink>
+    )
+  },
   {
     name: 'alignContent',
     typeInfo: 'string'

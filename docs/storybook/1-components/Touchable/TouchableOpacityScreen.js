@@ -7,12 +7,11 @@
 import DelayEvents from './examples/DelayEvents';
 import FeedbackEvents from './examples/FeedbackEvents';
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
 import { TouchableOpacityDisabled } from './examples/PropDisabled';
-import UIExplorer, { AppText, Description, DocItem, Section } from '../../ui-explorer';
+import UIExplorer, { AppText, Description, DocItem, Section, storiesOf } from '../../ui-explorer';
 
-const TouchableOpacityScreen = () =>
-  <UIExplorer title="TouchableOpacity" url="components/Touchable">
+const TouchableOpacityScreen = () => (
+  <UIExplorer title="TouchableOpacity" url="1-components/Touchable">
     <Description>
       <AppText>
         A wrapper for making views respond properly to touches. On press down, the opacity of the
@@ -70,6 +69,7 @@ const TouchableOpacityScreen = () =>
         }}
       />
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 storiesOf('Components', module).add('TouchableOpacity', TouchableOpacityScreen);

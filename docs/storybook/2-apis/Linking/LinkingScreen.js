@@ -6,11 +6,10 @@
 
 import OpenURL from './examples/OpenURL';
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
-import UIExplorer, { Description, DocItem, Section } from '../../ui-explorer';
+import UIExplorer, { Description, DocItem, Section, storiesOf } from '../../ui-explorer';
 
-const LinkingScreen = () =>
-  <UIExplorer title="Linking" url="apis/Linking">
+const LinkingScreen = () => (
+  <UIExplorer title="Linking" url="2-apis/Linking">
     <Description>
       Linking gives you a general interface for securely opening external URLs from JavaScript.
     </Description>
@@ -29,6 +28,7 @@ const LinkingScreen = () =>
         }}
       />
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 storiesOf('APIs', module).add('Linking', LinkingScreen);

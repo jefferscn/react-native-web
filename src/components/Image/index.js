@@ -11,8 +11,8 @@
  */
 
 import applyNativeMethods from '../../modules/applyNativeMethods';
-import { canUseDOM } from 'fbjs/lib/ExecutionEnvironment';
-import createDOMElement from '../../modules/createDOMElement';
+import createElement from '../../modules/createElement';
+import { getAssetByID } from '../../modules/AssetRegistry';
 import ImageLoader from '../../modules/ImageLoader';
 import ImageResizeMode from './ImageResizeMode';
 import ImageStylePropTypes from './ImageStylePropTypes';
@@ -34,6 +34,7 @@ const STATUS_PENDING = 'PENDING';
 const STATUS_IDLE = 'IDLE';
 
 const ImageSourcePropType = oneOfType([
+  number,
   shape({
     height: number,
     uri: string.isRequired,
@@ -47,7 +48,10 @@ const getImageState = (uri, shouldDisplaySource) => {
 };
 
 const resolveAssetDimensions = source => {
-  if (typeof source === 'object') {
+  if (typeof source === 'number') {
+    const { height, width } = getAssetByID(source);
+    return { height, width };
+  } else if (typeof source === 'object') {
     const { height, width } = source;
     return { height, width };
   }
@@ -55,14 +59,27 @@ const resolveAssetDimensions = source => {
 
 const svgDataUriPattern = /^data:image\/svg\+xml;/;
 const resolveAssetSource = source => {
-  const uri = typeof source === 'object' ? source.uri : source || '';
+  let uri;
+  if (typeof source === 'number') {
+    // get the URI from the packager
+    const asset = getAssetByID(source);
+    const scale = asset.scales[0];
+    const scaleSuffix = scale !== 1 ? `@${scale}x` : '';
+    uri = asset ? `${asset.httpServerLocation}/${asset.name}${scaleSuffix}.${asset.type}` : '';
+  } else if (source && source.uri) {
+    uri = source.uri;
+  } else {
+    uri = source || '';
+  }
+
   // SVG data may contain characters (e.g., #, ") that need to be escaped
   if (svgDataUriPattern.test(uri)) {
     const parts = uri.split('<svg');
     const [prefix, ...svgFragment] = parts;
-    const svg = encodeURIComponent(`<svg${svgFragment}`);
+    const svg = encodeURIComponent(`<svg${svgFragment.join('<svg')}`);
     return `${prefix}${svg}`;
   }
+
   return uri;
 };
 
@@ -113,7 +130,7 @@ class Image extends Component {
     super(props, context);
     // If an image has been loaded before, render it immediately
     const uri = resolveAssetSource(props.source);
-    const shouldDisplaySource = ImageUriCache.has(uri) || !canUseDOM;
+    const shouldDisplaySource = ImageUriCache.has(uri);
     this.state = { shouldDisplaySource };
     this._imageState = getImageState(uri, shouldDisplaySource);
     shouldDisplaySource && ImageUriCache.add(uri);
@@ -191,11 +208,11 @@ class Image extends Component {
 
     // Allows users to trigger the browser's image context menu
     const hiddenImage = displayImage
-      ? createDOMElement('img', {
+      ? createElement('img', {
           alt: accessibilityLabel || '',
           draggable,
           src: displayImage,
-          style: [StyleSheet.absoluteFill, styles.img]
+          style: styles.img
         })
       : null;
 
@@ -299,6 +316,7 @@ const styles = StyleSheet.create({
     display: 'inline-flex'
   },
   img: {
+    ...StyleSheet.absoluteFillObject,
     height: '100%',
     opacity: 0,
     width: '100%',

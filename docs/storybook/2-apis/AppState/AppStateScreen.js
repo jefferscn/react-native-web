@@ -6,11 +6,17 @@
 
 import React from 'react';
 import StateChangesExample from './examples/StateChanges';
-import { storiesOf } from '@kadira/storybook';
-import UIExplorer, { AppText, Code, Description, DocItem, Section } from '../../ui-explorer';
+import UIExplorer, {
+  AppText,
+  Code,
+  Description,
+  DocItem,
+  Section,
+  storiesOf
+} from '../../ui-explorer';
 
-const AppStateScreen = () =>
-  <UIExplorer title="AppState" url="apis/AppState">
+const AppStateScreen = () => (
+  <UIExplorer title="AppState" url="2-apis/AppState">
     <Description>
       <AppText>
         AppState can tell you if the app is in the foreground or background, and notify you when the
@@ -64,6 +70,7 @@ const AppStateScreen = () =>
         }}
       />
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 storiesOf('APIs', module).add('AppState', AppStateScreen);

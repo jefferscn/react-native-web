@@ -8,12 +8,18 @@ import DelayEvents from './examples/DelayEvents';
 import FeedbackEvents from './examples/FeedbackEvents';
 import React from 'react';
 import PropHitSlop from './examples/PropHitSlop';
-import { storiesOf } from '@kadira/storybook';
 import { TouchableWithoutFeedbackDisabled } from './examples/PropDisabled';
-import UIExplorer, { AppText, Code, Description, DocItem, Section } from '../../ui-explorer';
+import UIExplorer, {
+  AppText,
+  Code,
+  Description,
+  DocItem,
+  Section,
+  storiesOf
+} from '../../ui-explorer';
 
-const TouchableWithoutFeedbackScreen = () =>
-  <UIExplorer title="TouchableWithoutFeedback" url="components/Touchable">
+const TouchableWithoutFeedbackScreen = () => (
+  <UIExplorer title="TouchableWithoutFeedback" url="1-components/Touchable">
     <Description>
       <AppText>
         Do not use unless you have a very good reason. All the elements that respond to press should
@@ -28,6 +34,7 @@ const TouchableWithoutFeedbackScreen = () =>
 
     <Section title="Props">
       <DocItem name="...View props" />
+
       <DocItem
         name="delayLongPress"
         typeInfo="?number"
@@ -37,6 +44,7 @@ const TouchableWithoutFeedbackScreen = () =>
           </AppText>
         }
       />
+
       <DocItem
         name="delayPressIn"
         typeInfo="?number"
@@ -46,6 +54,7 @@ const TouchableWithoutFeedbackScreen = () =>
           </AppText>
         }
       />
+
       <DocItem
         name="delayPressOut"
         typeInfo="?number"
@@ -55,6 +64,7 @@ const TouchableWithoutFeedbackScreen = () =>
           </AppText>
         }
       />
+
       <DocItem
         name="disabled"
         typeInfo="?boolean"
@@ -67,14 +77,19 @@ const TouchableWithoutFeedbackScreen = () =>
           render: () => <TouchableWithoutFeedbackDisabled />
         }}
       />
-      <DocItem name="onLongPress" typeInfo="?function" />,
+
+      <DocItem name="onLongPress" typeInfo="?function" />
+
       <DocItem
         name="onPress"
         typeInfo="?function"
         description="Called when the touch is released, but not if cancelled (e.g. by a scroll that steals the responder lock)."
       />
+
       <DocItem name="onPressIn" typeInfo="?function" />
+
       <DocItem name="onPressOut" typeInfo="?function" />
+
       <DocItem
         name="pressRetentionOffset"
         typeInfo="?{top: number, left: number, bottom: number, right: number}"
@@ -84,6 +99,7 @@ back and you'll see that the button is once again reactivated! Move it back and
 forth several times while the scroll view is disabled. Ensure you pass in a
 constant to reduce memory allocations.`}
       />
+
       <DocItem name="style" typeInfo="?style" />
     </Section>
 
@@ -104,6 +120,7 @@ constant to reduce memory allocations.`}
 
       <DocItem description="Hit slop" example={{ render: () => <PropHitSlop /> }} />
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 storiesOf('Components', module).add('TouchableWithoutFeedback', TouchableWithoutFeedbackScreen);

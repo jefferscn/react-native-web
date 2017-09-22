@@ -15,7 +15,7 @@ import TextInputStylePropTypes from '../../components/TextInput/TextInputStylePr
 import TextStylePropTypes from '../../components/Text/TextStylePropTypes';
 import ViewStylePropTypes from '../../components/View/ViewStylePropTypes';
 import warning from 'fbjs/lib/warning';
-import { oneOf, string } from 'prop-types';
+import { number, oneOf, string } from 'prop-types';
 
 // Hardcoded because this is a legit case but we don't want to load it from
 // a private API. We might likely want to unify style sheet creation with how it
@@ -26,23 +26,27 @@ const ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 export default class StyleSheetValidation {
   static validateStyleProp(prop, style, caller) {
     if (process.env.NODE_ENV !== 'production') {
+      const isCustomProperty = prop.indexOf('--') === 0;
+      if (isCustomProperty) return;
+
       if (allStylePropTypes[prop] === undefined) {
         const message1 = '"' + prop + '" is not a valid style property.';
         const message2 =
           '\nValid style props: ' +
           JSON.stringify(Object.keys(allStylePropTypes).sort(), null, '  ');
         styleError(message1, style, caller, message2);
-      }
-      const error = allStylePropTypes[prop](
-        style,
-        prop,
-        caller,
-        'prop',
-        null,
-        ReactPropTypesSecret
-      );
-      if (error) {
-        styleError(error.message, style, caller);
+      } else {
+        const error = allStylePropTypes[prop](
+          style,
+          prop,
+          caller,
+          'prop',
+          null,
+          ReactPropTypesSecret
+        );
+        if (error) {
+          styleError(error.message, style, caller);
+        }
       }
     }
   }
@@ -80,12 +84,16 @@ StyleSheetValidation.addValidStylePropTypes(ImageStylePropTypes);
 StyleSheetValidation.addValidStylePropTypes(TextStylePropTypes);
 StyleSheetValidation.addValidStylePropTypes(TextInputStylePropTypes);
 StyleSheetValidation.addValidStylePropTypes(ViewStylePropTypes);
+
 StyleSheetValidation.addValidStylePropTypes({
   appearance: string,
+  borderCollapse: string,
+  borderSpacing: oneOf([number, string]),
   clear: string,
   cursor: string,
   float: oneOf(['left', 'none', 'right']),
   font: string /* @private */,
   listStyle: string,
-  pointerEvents: string
+  pointerEvents: string,
+  tableLayout: string
 });

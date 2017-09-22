@@ -5,41 +5,38 @@
  */
 
 import AppText from './AppText';
+import ExternalLink from './ExternalLink';
 import insertBetween from './insertBetween';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-const Title = ({ children }) =>
-  <AppText style={styles.title}>
-    {children}
-  </AppText>;
+const Title = ({ children }) => <AppText style={styles.title}>{children}</AppText>;
 
-export const Description = ({ children }) =>
+export const Description = ({ children }) => (
   <AppText style={styles.description}>
     {insertBetween(() => <Divider key={Math.random()} />, React.Children.toArray(children))}
-  </AppText>;
+  </AppText>
+);
 
 const Divider = () => <View style={styles.divider} />;
 
-const SourceLink = ({ uri }) =>
-  <AppText
-    accessibilityRole="link"
+const SourceLink = ({ uri }) => (
+  <ExternalLink
     href={`https://github.com/necolas/react-native-web/tree/master/docs/storybook/${uri}`}
     style={styles.link}
-    target="_blank"
   >
     View source code on GitHub
-  </AppText>;
+  </ExternalLink>
+);
 
-const UIExplorer = ({ children, description, sections, title, url }) =>
+const UIExplorer = ({ children, description, sections, title, url }) => (
   <View style={styles.root}>
-    <Title>
-      {title}
-    </Title>
+    <Title>{title}</Title>
     {description}
     {children}
     {url && <SourceLink uri={url} />}
-  </View>;
+  </View>
+);
 
 const styles = StyleSheet.create({
   root: {
@@ -62,6 +59,7 @@ const styles = StyleSheet.create({
   },
   link: {
     color: '#1B95E0',
+    fontSize: '1rem',
     marginTop: 'calc(0.5 * 1.3125rem)',
     textDecorationLine: 'underline'
   }

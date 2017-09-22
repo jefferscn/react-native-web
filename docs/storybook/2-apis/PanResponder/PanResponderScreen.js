@@ -3,12 +3,11 @@
  */
 
 import DraggableCircleExample from './examples/DraggableCircle';
-import { storiesOf } from '@kadira/storybook';
 import React from 'react';
-import UIExplorer, { AppText, Description, DocItem, Section } from '../../ui-explorer';
+import UIExplorer, { AppText, Description, DocItem, Section, storiesOf } from '../../ui-explorer';
 
-const PanResponderScreen = () =>
-  <UIExplorer title="PanResponder" url="apis/PanResponder">
+const PanResponderScreen = () => (
+  <UIExplorer title="PanResponder" url="2-apis/PanResponder">
     <Description>
       PanResponder reconciles several touches into a single gesture. It makes single-touch gestures
       resilient to extra touches, and can be used to recognize simple multi-touch gestures. For more
@@ -30,6 +29,7 @@ const PanResponderScreen = () =>
         }}
       />
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 storiesOf('APIs', module).add('PanResponder', PanResponderScreen);

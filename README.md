@@ -3,41 +3,56 @@
 [![Build Status][travis-image]][travis-url]
 [![npm version][npm-image]][npm-url]
 
-[React Native][react-native-url] components and APIs for the Web.
+"React Native for Web" brings the platform-agnostic Components and APIs of
+[React Native][react-native-url] to the Web.
 
-Browser support: Chrome, Firefox, Safari >= 7, IE 10, Edge.
+Browse the [interactive
+documentation](https://necolas.github.io/react-native-web/storybook/) or [try
+it out](https://glitch.com/edit/#!/react-native-web-playground) on Glitch.
 
-[npm-image]: https://badge.fury.io/js/react-native-web.svg
-[npm-url]: https://npmjs.org/package/react-native-web
-[react-native-url]: https://facebook.github.io/react-native/
-[travis-image]: https://travis-ci.org/necolas/react-native-web.svg?branch=master
-[travis-url]: https://travis-ci.org/necolas/react-native-web
+## Features
 
-## Overview
-
-"React Native for Web" is a project to bring React Native's building blocks and
-touch handling to the Web.
-
-Browse the [UI Explorer](https://necolas.github.io/react-native-web/storybook/)
-to see React Native examples running on Web. Or try it out online with [React
-Native for Web: Playground](https://www.webpackbin.com/bins/-KgucwxRbn7HRU-V-3Bc).
+* Interoperability with ReactDOM components.
+* Native-like touch handling.
+* Built-in integration with web accessibility APIs.
+* Built-in support for LTR and RTL layouts.
+* Built-in expressive and reliable subset of CSS.
+* Optimized, vendor-prefixed CSS with [good runtime performance](benchmarks/README.md).
+* Server-side rendering of HTML and critical CSS.
+* Browser support: Chrome, Firefox, Safari >= 7, IE 10, Edge.
 
 ## Quick start
 
-To install in your app:
-
-```
-npm install --save react@15.6 react-dom@15.6 react-native-web
-```
-
 NOTE: React Native for Web supports React/ReactDOM 15.4, 15.5, or 15.6.
 
-Then read the [Getting Started](docs/guides/getting-started.md) guide.
+Install in your existing app using `yarn` or `npm`:
+
+```
+yarn add react@15.6 react-dom@15.6 react-native-web
+```
+
+Add the `react-native-web/babel` plugin to your Babel configuration. This will
+alias `react-native` to `react-native-web` and exclude any modules not required
+by the app.
+
+```json
+{
+  "plugins": [
+    "react-native-web/babel"
+  ],
+  "presets": [
+    "react-native"
+  ]
+}
+```
+
+See the [Getting Started](docs/guides/getting-started.md) guide for more details.
 
 ## Documentation
 
-The [UI Explorer](https://necolas.github.io/react-native-web/storybook/)
-interactively documents all the APIs and Components.
+The [interactive
+documentation](https://necolas.github.io/react-native-web/storybook/) shows all
+the supported APIs and Components.
 
 Guides:
 
@@ -48,6 +63,13 @@ Guides:
 * [Internationalization](docs/guides/internationalization.md)
 * [Advanced use](docs/guides/advanced.md)
 * [Known issues](docs/guides/known-issues.md)
+
+## Starter kits
+
+* [Glitch](https://glitch.com/edit/#!/react-native-web-playground)
+* [create-react-app](https://github.com/facebookincubator/create-react-app)
+* [react-native-web-starter](https://github.com/grabcode/react-native-web-starter)
+* [react-native-web-webpack](https://github.com/ndbroadbent/react-native-web-webpack)
 
 ## Example code
 
@@ -91,13 +113,16 @@ AppRegistry.runApplication('MyApp', { rootTag: document.getElementById('react-ro
 ## Related projects
 
 * [react-primitives](https://github.com/lelandrichardson/react-primitives/)
-* [react-native-web-player](https://github.com/dabbott/react-native-web-player)
-* [react-native-web-starter](https://github.com/grabcode/react-native-web-starter)
-* [react-native-web-webpack](https://github.com/ndbroadbent/react-native-web-webpack)
 * [react-sketchapp](https://github.com/airbnb/react-sketchapp)
-* [react-web](https://github.com/taobaofed/react-web)
 * [reactxp](https://github.com/microsoft/reactxp)
+* [react-native-web-player](https://github.com/dabbott/react-native-web-player)
 
 ## License
 
 React Native for Web is [BSD licensed](LICENSE).
+
+[npm-image]: https://badge.fury.io/js/react-native-web.svg
+[npm-url]: https://npmjs.org/package/react-native-web
+[react-native-url]: https://facebook.github.io/react-native/
+[travis-image]: https://travis-ci.org/necolas/react-native-web.svg?branch=master
+[travis-url]: https://travis-ci.org/necolas/react-native-web

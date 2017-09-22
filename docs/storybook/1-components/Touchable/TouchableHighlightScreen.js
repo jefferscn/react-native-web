@@ -8,12 +8,11 @@ import CustomStyleOverrides from './examples/CustomStyleOverrides';
 import DelayEvents from './examples/DelayEvents';
 import FeedbackEvents from './examples/FeedbackEvents';
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
 import { TouchableHighlightDisabled } from './examples/PropDisabled';
-import UIExplorer, { AppText, Description, DocItem, Section } from '../../ui-explorer';
+import UIExplorer, { AppText, Description, DocItem, Section, storiesOf } from '../../ui-explorer';
 
-const TouchableHighlightScreen = () =>
-  <UIExplorer title="TouchableHighlight" url="components/Touchable">
+const TouchableHighlightScreen = () => (
+  <UIExplorer title="TouchableHighlight" url="1-components/Touchable">
     <Description>
       <AppText>
         A wrapper for making views respond properly to touches. On press down, the opacity of the
@@ -88,6 +87,7 @@ const TouchableHighlightScreen = () =>
         }}
       />
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 storiesOf('Components', module).add('TouchableHighlight', TouchableHighlightScreen);

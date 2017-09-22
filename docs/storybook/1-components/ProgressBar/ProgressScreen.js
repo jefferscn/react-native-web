@@ -8,11 +8,10 @@ import PropIndeterminate from './examples/PropIndeterminate';
 import PropProgress from './examples/PropProgress';
 import PropTrackColor from './examples/PropTrackColor';
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
-import UIExplorer, { Description, DocItem, Section } from '../../ui-explorer';
+import UIExplorer, { Description, DocItem, Section, storiesOf } from '../../ui-explorer';
 
-const ProgressBarScreen = () =>
-  <UIExplorer title="ProgressBar" url="components/ProgressBar">
+const ProgressBarScreen = () => (
+  <UIExplorer title="ProgressBar" url="1-components/ProgressBar">
     <Description>Display an activity progress bar</Description>
     <Section title="Props">
       <DocItem name="...View props" />
@@ -63,6 +62,7 @@ const ProgressBarScreen = () =>
         }}
       />
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 storiesOf('Components', module).add('ProgressBar', ProgressBarScreen);

@@ -8,18 +8,18 @@ import PropChildren from './examples/PropChildren';
 import PropNumberOfLines from './examples/PropNumberOfLines';
 import PropOnPress from './examples/PropOnPress';
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
 import UIExplorer, {
   AppText,
   Code,
   Description,
   DocItem,
   Section,
+  storiesOf,
   StyleList
 } from '../../ui-explorer';
 
-const TextScreen = () =>
-  <UIExplorer title="Text" url="components/Text">
+const TextScreen = () => (
+  <UIExplorer title="Text" url="1-components/Text">
     <Description>
       <AppText>
         Text is component for displaying text. It supports style, basic touch handling, and inherits
@@ -37,7 +37,12 @@ const TextScreen = () =>
       <DocItem
         name="accessibilityLabel"
         typeInfo="?string"
-        description="Overrides the text that is read by a screen reader when the user interacts with the element. (This is implemented using 'aria-label'.)"
+        description={
+          <AppText>
+            Overrides the text that is read by a screen reader when the user interacts with the
+            element. (This is implemented using <Code>aria-label</Code>.)
+          </AppText>
+        }
       />
 
       <DocItem
@@ -49,7 +54,7 @@ const TextScreen = () =>
             The values of this attribute are expressed in degrees of importance. When regions are
             specified as <Code>polite</Code> (recommended), updates take low priority. When regions
             are specified as <Code>assertive</Code>, assistive technologies will interrupt and
-            immediately notify the user. (This is implemented using 'aria-live'.)
+            immediately notify the user. (This is implemented using <Code>aria-live</Code>.)
           </AppText>
         }
       />
@@ -78,7 +83,7 @@ const TextScreen = () =>
             When <Code>true</Code>, indicates that the view is an accessibility element (i.e.,
             focusable) and groups its child content. By default, all the touchable elements and
             elements with <Code>accessibilityRole</Code> of <Code>button</Code> and{' '}
-            <Code>link</Code> are accessible. (This is implemented using 'tabindex'.)
+            <Code>link</Code> are accessible. (This is implemented using <Code>tabindex</Code>.)
           </AppText>
         }
       />
@@ -86,9 +91,12 @@ const TextScreen = () =>
       <DocItem
         name="children"
         typeInfo="?any"
-        description={`Child content. Nested text components will inherit the styles of their parents
-(only backgroundColor is inherited from non-Text parents). <Text>
-only supports other <Text> and raw text (strings) as children.`}
+        description={
+          <AppText>
+            Child content. Nested text components will inherit the styles of their parents (only
+            backgroundColor is inherited from non-<Code>Text</Code> parents).
+          </AppText>
+        }
         example={{
           render: () => <PropChildren />
         }}
@@ -103,7 +111,7 @@ only supports other <Text> and raw text (strings) as children.`}
           </AppText>,
           <AppText>
             A value of <Code>no-hide-descendants</Code> will hide the element and its children from
-            assistive technologies. (This is implemented using 'aria-hidden'.)
+            assistive technologies. (This is implemented using <Code>aria-hidden</Code>.)
           </AppText>
         ]}
       />
@@ -156,7 +164,8 @@ only supports other <Text> and raw text (strings) as children.`}
         description="Used to locate this view in end-to-end tests. The test ID is rendered to a 'data-testid' DOM attribute"
       />
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 const stylePropTypes = [
   {

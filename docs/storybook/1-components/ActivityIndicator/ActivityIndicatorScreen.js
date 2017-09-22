@@ -9,11 +9,10 @@ import PropColor from './examples/PropColor';
 import PropHidesWhenStopped from './examples/PropHidesWhenStopped';
 import PropSize from './examples/PropSize';
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
-import UIExplorer, { Description, DocItem, Section } from '../../ui-explorer';
+import UIExplorer, { Description, DocItem, Section, storiesOf } from '../../ui-explorer';
 
-const ActivityIndicatorScreen = () =>
-  <UIExplorer title="ActivityIndicator" url="components/ActivityIndicator">
+const ActivityIndicatorScreen = () => (
+  <UIExplorer title="ActivityIndicator" url="1-components/ActivityIndicator">
     <Description>Displays a customizable activity indicator</Description>
     <Section title="Props">
       <DocItem name="...View props" />
@@ -54,6 +53,7 @@ const ActivityIndicatorScreen = () =>
         }}
       />
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 storiesOf('Components', module).add('ActivityIndicator', ActivityIndicatorScreen);

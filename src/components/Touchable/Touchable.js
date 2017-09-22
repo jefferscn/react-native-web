@@ -12,6 +12,7 @@
  * @flow
  */
 
+import AccessibilityUtil from '../../modules/AccessibilityUtil';
 import BoundingDimensions from './BoundingDimensions';
 import findNodeHandle from '../../modules/findNodeHandle';
 import normalizeColor from 'normalize-css-color';
@@ -399,6 +400,7 @@ const TouchableMixin = {
     if (delayMS !== 0) {
       this.touchableDelayTimeout = setTimeout(this._handleDelay.bind(this, e), delayMS);
     } else {
+      this.state.touchable.positionOnActivate = null;
       this._handleDelay(e);
     }
 
@@ -818,7 +820,11 @@ const TouchableMixin = {
         }
       }
       e.stopPropagation();
-      e.preventDefault();
+      // prevent the default behaviour unless the Touchable functions as a link
+      // and Enter is pressed
+      if (!(which === ENTER && AccessibilityUtil.propsToAriaRole(this.props) === 'link')) {
+        e.preventDefault();
+      }
     }
   }
 };

@@ -2,12 +2,11 @@
  * @flow
  */
 
-import { storiesOf } from '@kadira/storybook';
 import React from 'react';
-import UIExplorer, { Description, DocItem, Section } from '../../ui-explorer';
+import UIExplorer, { Description, DocItem, Section, storiesOf } from '../../ui-explorer';
 
-const PlatformScreen = () =>
-  <UIExplorer title="Platform" url="apis/Platform">
+const PlatformScreen = () => (
+  <UIExplorer title="Platform" url="2-apis/Platform">
     <Description>
       Detect what is the platform in which the app is running. This piece of functionality can be
       useful when only small parts of a component are platform specific.
@@ -52,6 +51,7 @@ const containerStyles = {
         typeInfo="(object) => any"
       />
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 storiesOf('APIs', module).add('Platform', PlatformScreen);

@@ -4,11 +4,10 @@
 
 import React from 'react';
 import SetStringExample from './examples/SetString';
-import { storiesOf } from '@kadira/storybook';
-import UIExplorer, { Description, DocItem, Section } from '../../ui-explorer';
+import UIExplorer, { Description, DocItem, Section, storiesOf } from '../../ui-explorer';
 
-const ClipboardScreen = () =>
-  <UIExplorer title="Clipboard" url="apis/Clipboard">
+const ClipboardScreen = () => (
+  <UIExplorer title="Clipboard" url="2-apis/Clipboard">
     <Description>
       Clipboard gives you an interface for setting to the clipboard. (Getting clipboard content is
       not supported on web.)
@@ -40,6 +39,7 @@ const ClipboardScreen = () =>
         typeInfo="()"
       />
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 storiesOf('APIs', module).add('Clipboard', ClipboardScreen);

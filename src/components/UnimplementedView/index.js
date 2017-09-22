@@ -11,18 +11,13 @@
  */
 
 import View from '../View';
-import { any, object } from 'prop-types';
 import React, { Component } from 'react';
 
 /**
  * Common implementation for a simple stubbed view.
  */
+/* eslint-disable react/prop-types */
 class UnimplementedView extends Component {
-  static propTypes = {
-    children: any,
-    style: object
-  };
-
   setNativeProps() {
     // Do nothing.
     // This method is required in order to use this view as a Touchable* child.
@@ -30,11 +25,7 @@ class UnimplementedView extends Component {
   }
 
   render() {
-    return (
-      <View style={[unimplementedViewStyles, this.props.style]}>
-        {this.props.children}
-      </View>
-    );
+    return <View style={[unimplementedViewStyles, this.props.style]}>{this.props.children}</View>;
   }
 }
 

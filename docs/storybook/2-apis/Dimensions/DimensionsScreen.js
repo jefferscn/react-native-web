@@ -5,19 +5,19 @@
  */
 
 import DimensionsChange from './examples/DimensionsChange';
-import { storiesOf } from '@kadira/storybook';
 import UIExplorer, {
   AppText,
   Code,
   Description,
   DocItem,
   Section,
+  storiesOf,
   TextList
 } from '../../ui-explorer';
 import React from 'react';
 
-const DimensionsScreen = () =>
-  <UIExplorer title="Dimensions" url="apis/Dimensions">
+const DimensionsScreen = () => (
+  <UIExplorer title="Dimensions" url="2-apis/Dimensions">
     <Description>
       Note: dimensions may change (e.g., due to device rotation) so any rendering logic or styles
       that depend on these constants should try to call this function on every render, rather than
@@ -32,6 +32,14 @@ const DimensionsScreen = () =>
         example={{
           code: "const { height, width } = Dimensions.get('window')"
         }}
+      />
+
+      <DocItem
+        name="static set"
+        typeInfo="(dimensions: ?{[key:string]: any}) => void"
+        description="This should only be called server-side with an estimate
+        for initial dimensions to be used when pre-rendering pages on the
+        server."
       />
 
       <DocItem
@@ -62,6 +70,7 @@ const DimensionsScreen = () =>
         description="Remove an event handler."
       />
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 storiesOf('APIs', module).add('Dimensions', DimensionsScreen);

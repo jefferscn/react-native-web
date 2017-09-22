@@ -13,11 +13,17 @@ import PropThumbColor from './examples/PropThumbColor';
 import PropTrackColor from './examples/PropTrackColor';
 import PropValue from './examples/PropValue';
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
-import UIExplorer, { AppText, Code, Description, DocItem, Section } from '../../ui-explorer';
+import UIExplorer, {
+  AppText,
+  Code,
+  Description,
+  DocItem,
+  Section,
+  storiesOf
+} from '../../ui-explorer';
 
-const SwitchScreen = () =>
-  <UIExplorer title="Switch" url="components/Switch">
+const SwitchScreen = () => (
+  <UIExplorer title="Switch" url="1-components/Switch">
     <Description>
       <AppText>
         This is a controlled component that requires an <Code>onValueChange</Code> callback that
@@ -124,6 +130,7 @@ const SwitchScreen = () =>
         }}
       />
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 storiesOf('Components', module).add('Switch', SwitchScreen);

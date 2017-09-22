@@ -7,12 +7,11 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
 
-const Entity = ({ children }) =>
-  <Text style={{ fontWeight: '500', color: '#527fe4' }}>
-    {children}
-  </Text>;
+const Entity = ({ children }) => (
+  <Text style={{ fontWeight: '500', color: '#527fe4' }}>{children}</Text>
+);
 
-const TextChildrenExample = () =>
+const TextChildrenExample = () => (
   <View>
     <Text>
       This text contains an inline blue view{' '}
@@ -39,6 +38,7 @@ const TextChildrenExample = () =>
         <Text>
           (is inherited
           <Text style={{ opacity: 0.7 }}>
+            {'\n'}
             (and accumulated
             <Text style={{ backgroundColor: '#ffaaaa' }}>(and also applies to the background)</Text>
             )
@@ -51,6 +51,7 @@ const TextChildrenExample = () =>
         <Entity>Entity Name</Entity>
       </Text>
     </View>
-  </View>;
+  </View>
+);
 
 export default TextChildrenExample;

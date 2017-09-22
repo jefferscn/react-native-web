@@ -8,18 +8,18 @@ import { HorizontalExample } from './examples/Horizontal';
 import ScrollToExample from './examples/ScrollTo';
 import ScrollToEndExample from './examples/ScrollToEnd';
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
 import UIExplorer, {
   AppText,
   Code,
   Description,
   DocItem,
   Section,
+  storiesOf,
   TextList
 } from '../../ui-explorer';
 
-const ScrollViewScreen = () =>
-  <UIExplorer title="ScrollView" url="components/ScrollView">
+const ScrollViewScreen = () => (
+  <UIExplorer title="ScrollView" url="1-components/ScrollView">
     <Description>
       <AppText>
         A scrollable <Code>View</Code> that provides itegration with the touch-locking responder
@@ -166,6 +166,7 @@ const ScrollViewScreen = () =>
         }}
       />
     </Section>
-  </UIExplorer>;
+  </UIExplorer>
+);
 
 storiesOf('Components', module).add('ScrollView', ScrollViewScreen);

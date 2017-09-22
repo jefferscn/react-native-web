@@ -10,7 +10,8 @@
 import applyLayout from '../../modules/applyLayout';
 import applyNativeMethods from '../../modules/applyNativeMethods';
 import { bool } from 'prop-types';
-import createDOMElement from '../../modules/createDOMElement';
+import createElement from '../../modules/createElement';
+import invariant from 'fbjs/lib/invariant';
 import StyleSheet from '../../apis/StyleSheet';
 import ViewPropTypes from './ViewPropTypes';
 import React, { Component } from 'react';
@@ -49,22 +50,28 @@ class View extends Component {
       ...otherProps
     } = this.props;
 
+    if (process.env.NODE_ENV !== 'production') {
+      React.Children.toArray(this.props.children).forEach(item => {
+        invariant(
+          typeof item !== 'string',
+          `Unexpected text node: ${item}. A text node cannot be a child of a <View>.`
+        );
+      });
+    }
+
     const { isInAParentText } = this.context;
 
     otherProps.style = [styles.initial, isInAParentText && styles.inline, style];
 
     if (hitSlop) {
       const hitSlopStyle = calculateHitSlopStyle(hitSlop);
-      const hitSlopChild = createDOMElement('span', { style: [styles.hitSlop, hitSlopStyle] });
+      const hitSlopChild = createElement('span', { style: [styles.hitSlop, hitSlopStyle] });
       otherProps.children = React.Children.toArray(otherProps.children);
       otherProps.children.unshift(hitSlopChild);
       otherProps.style.unshift(styles.hasHitSlop);
     }
 
-    // avoid HTML validation errors
-    const component = 'div';
-
-    return createDOMElement(component, otherProps);
+    return createElement('div', otherProps);
   }
 }
 
