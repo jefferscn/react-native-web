@@ -107,10 +107,7 @@ const ReactNative = {
   KeyboardAvoidingView,
   ListView,
   Modal,
-<<<<<<< HEAD
-=======
   Picker,
->>>>>>> alert/feature/alert
   ProgressBar,
   RefreshControl,
   ScrollView,
