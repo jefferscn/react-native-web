@@ -12,11 +12,10 @@
 /* eslint-disable */
 
 'use strict';
-
-const React = require('react')
-const findNodeHandle = require('../../modules/findNodeHandle')
-const ScrollView = require('../ScrollView')
-const View = require('../View')
+import React from 'react';
+import findNodeHandle from '../../modules/findNodeHandle';
+import ScrollView from '../ScrollView';
+import View from '../View';
 const { computeWindowedRenderLimits } = require('./VirtualizeUtils')
 const FillRateHelper = require('./FillRateHelper')
 const Batchinator = require('./Batchinator')
