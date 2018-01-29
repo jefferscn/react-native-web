@@ -21,23 +21,9 @@ function getStyles(props) {
             top: -10000,
             left: -10000,
             transform: props.status === 'hide' ?
-                `translate(${10000 + props.left}px, ${10000 + props.top}px) scale(0)`:
+                `translate(${10000 + props.left}px, ${10000 + props.top}px) scale(0.001)` :
                 `translate(${10000 + props.left}px, ${10000 + props.top}px)`,
-
-        /*                [
-                        {
-                            translateX: `${10000 + props.left}px`,
-                            translateY: `${10000 + props.top}px`
-                        },
-                        // {
-                        //     // transform: scale(0.0);
-                        //     scaleX: 0.5,
-                        //     scaleY: 0.5,
-                        // }
-                    ],*/
-                // `translate(${10000 + props.left}px, ${10000 + props.top}px)`,
-                // `translate(${10000 + props.left}px, ${10000 + props.top}px)`,
-            opacity: props.status === 'hide' ? 0.5 : 1,
+            opacity: props.status === 'hide' ? 0.9 : 1,
             transition: props.status === 'hide' ? transitions.create('all', '.3s', null, 'ease-out') : 'none',
         },
     };

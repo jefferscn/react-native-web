@@ -50,7 +50,7 @@ class BokePan extends Component {
             }
             // pan move
             event.direction = this.panDirection(this.x1, this.x2, this.y1, this.y2);
-            event.distance = Math.abs(this.x1 - this.x2);
+            event.distance = Math.abs(this.y1 - this.y2);
             this.panTimeout = setTimeout(() => {
                 this.emitEvent(`onPan${event.direction}`, event);
             }, 0);
@@ -62,7 +62,7 @@ class BokePan extends Component {
         clearTimeout(this.panTimeout);
     }
     handleTouchEnd(event) {
-        console.log('touch end')
+        event.distance = Math.abs(this.y1 - this.y2);
         // end
         if (this.panning === true) {
             this.panEndTimeout = setTimeout(() => {
