@@ -1,2 +1,1 @@
-
-module.exports={};
+Object.defineProperty(exports,"__esModule",{value:true});var NativeModules={};exports.default=NativeModules;
