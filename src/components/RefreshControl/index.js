@@ -71,6 +71,12 @@ class RefreshControl extends Component<*> {
         return status === 'loading';
     }
     handlePanUp = (event) => {
+        if (event.current[1] - event.origin[1] <= 0) {
+            this.setState({
+                percentage: 0,
+            });
+            return;
+        }
         if (this.state.panningDown) {
             this.handlePanDown(event);
         }
@@ -99,6 +105,10 @@ class RefreshControl extends Component<*> {
     }, 1000);
   };
     handlePanEnd = (event) => {
+        if (event.current[1] - event.origin[1] <= 0) {
+            this._doReset();
+            return;
+        }
         let {distance} = event;
         distance = distance / resistance;
         if (this.isStatusLoading() || !this.state.panningDown) {

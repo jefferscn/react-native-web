@@ -17,7 +17,7 @@ class BokePan extends Component {
         this.emitEvent = this.emitEvent.bind(this);
     }
     panDirection(x1, x2, y1, y2) {
-        return Math.abs(x1 - x2) >= Math.abs(y1 - y2) ? (x1 - x2 > 0 ? 'Left' : 'Right') : (y1 - y2 > 0 ? 'Up' : 'Down');
+        return y1 - y2 > 0 ? 'Up' : 'Down'; // Only up and down, no right or left.
     }
     handleTouchStart(event) {
         if (!event.touches) {
@@ -37,7 +37,7 @@ class BokePan extends Component {
         if (this.multiTouch === false &&
             (
                 (this.x2 && Math.abs(this.x1 - this.x2) > 10) ||
-                (this.y2 && Math.abs(this.preV.y = this.y2) > 10)
+                (this.y2 && Math.abs(this.preV.y - this.y2) > 10)
             )
 
         ) {
@@ -51,6 +51,7 @@ class BokePan extends Component {
             // pan move
             event.direction = this.panDirection(this.x1, this.x2, this.y1, this.y2);
             event.distance = Math.abs(this.y1 - this.y2);
+            event.current = [pageX, pageY];
             this.panTimeout = setTimeout(() => {
                 this.emitEvent(`onPan${event.direction}`, event);
             }, 0);
