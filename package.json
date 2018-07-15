@@ -1,93 +1,83 @@
 {
-  "name": "react-native-web",
-  "version": "0.0.94",
-  "description": "React Native for Web",
-  "main": "dist/index.js",
-  "files": [
-    "dist",
-    "src",
-    "!**/__tests__"
-  ],
+  "private": true,
+  "version": "0.8.8",
+  "name": "react-native-web-monorepo",
   "scripts": {
-    "build": "del ./dist && mkdir dist && babel src -d dist --ignore **/__tests__",
-    "build:examples": "build-storybook -o dist-examples -c ./examples/.storybook",
-    "build:performance": "cd performance && yarn && webpack",
-    "build:umd": "webpack --config webpack.config.js --sort-assets-by --progress",
-    "deploy:examples": "git checkout gh-pages && rm -rf ./storybook && mv dist-examples storybook && git add -A && git commit -m \"Storybook deploy\" && git push origin gh-pages && git checkout -",
-    "examples": "start-storybook -p 9001 -c ./examples/.storybook --dont-track",
-    "fmt": "find performance src -name '*.js' | grep -v -E '(node_modules|dist)' | xargs prettier --print-width=100 --single-quote --write",
-    "lint": "eslint performance src --ignore-path .gitignore",
-    "release": "npm run build && npm run build:umd && npm publish",
-    "test": "npm run lint && npm run test:jest",
-    "test:jest": "jest",
-    "test:watch": "npm run test:jest -- --watch"
-  },
-  "dependencies": {
-    "animated": "^0.2.0",
-    "array-find-index": "^1.0.2",
-    "babel-runtime": "^6.23.0",
-    "create-react-class": "^15.5.2",
-    "debounce": "1.0.2",
-    "deep-assign": "^2.0.0",
-    "fbjs": "^0.8.8",
-    "hyphenate-style-name": "^1.0.2",
-    "inline-style-prefixer": "^3.0.2",
-    "normalize-css-color": "^1.0.2",
-    "prop-types": "^15.5.8",
-    "react-timer-mixin": "^0.13.3",
-    "react-transition-group": "^1.1.3"
+    "clean": "del ./packages/*/dist",
+    "compile": "npm-run-all clean -p \"compile:* -- {@}\" --",
+    "compile:commonjs": "cd packages/react-native-web && BABEL_ENV=commonjs babel src --out-dir dist/cjs --ignore \"**/__tests__\"",
+    "compile:es": "cd packages/react-native-web && babel src --out-dir dist --ignore \"**/__tests__\"",
+    "benchmarks": "cd packages/benchmarks && yarn build",
+    "benchmarks:release": "cd packages/benchmarks && yarn release",
+    "examples": "cd packages/examples && yarn build",
+    "examples:release": "cd packages/examples && yarn release",
+    "website": "cd packages/website && yarn start",
+    "website:release": "cd packages/website && yarn release",
+    "flow": "flow",
+    "fmt": "prettier --write \"**/*.js\"",
+    "jest": "BABEL_ENV=commonjs jest --config ./scripts/jest/config.js",
+    "lint": "yarn lint:check --fix",
+    "lint:check": "eslint packages scripts",
+    "precommit": "lint-staged",
+    "prerelease": "yarn test && yarn compile && yarn compile:commonjs",
+    "release": "node ./scripts/release/publish.js",
+    "postrelease": "yarn benchmarks:release && yarn examples:release && yarn website:release",
+    "test": "yarn flow && yarn lint:check && yarn jest --runInBand"
   },
   "devDependencies": {
-    "@kadira/storybook": "^2.5.1",
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.24.1",
-    "babel-eslint": "^7.2.2",
-    "babel-loader": "^6.4.1",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.2",
-    "babel-preset-react-native": "^1.9.1",
-    "del-cli": "^0.2.1",
-    "enzyme": "^2.8.2",
-    "enzyme-to-json": "^1.5.1",
-    "eslint": "^3.19.0",
-    "eslint-config-prettier": "^1.7.0",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-react": "^6.10.3",
-    "file-loader": "^0.11.1",
-    "jest": "^19.0.2",
-    "node-libs-browser": "^0.5.3",
-    "prettier": "^1.2.2",
-    "react": "~15.4.1",
-    "react-addons-test-utils": "~15.4.1",
-    "react-dom": "~15.4.1",
-    "react-test-renderer": "^15.5.4",
-    "url-loader": "^0.5.8",
-    "webpack": "^2.3.3",
-    "webpack-bundle-analyzer": "^2.4.0"
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.10",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-native": "^4.0.0",
+    "caniuse-api": "^2.0.0",
+    "del-cli": "^1.1.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.0",
+    "enzyme-to-json": "^3.3.3",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-react": "^7.7.0",
+    "flow-bin": "^0.63.1",
+    "glob": "^7.1.2",
+    "husky": "^0.14.3",
+    "jest": "^22.4.3",
+    "jest-canvas-mock": "^1.0.2",
+    "lint-staged": "^7.1.0",
+    "npm-run-all": "^4.1.3",
+    "prettier": "^1.12.1",
+    "react": "^16.4.1",
+    "react-art": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-test-renderer": "^16.4.1"
   },
-  "peerDependencies": {
-    "react": "15.4.x || 15.5.x",
-    "react-dom": "15.4.x || 15.5.x"
+  "workspaces": [
+    "packages/*"
+  ],
+  "lint-staged": {
+    "packages/react-native-web/src/index.js": [
+      "node ./scripts/babel/createModuleMap.js",
+      "prettier --write ./packages/babel-plugin-react-native-web/src/moduleMap.js",
+      "git add ./packages/babel-plugin-react-native-web/src/moduleMap.js"
+    ],
+    "**/*.js": [
+      "prettier --write",
+      "git update-index --again",
+      "eslint"
+    ]
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true
   },
   "author": "Nicolas Gallagher",
-  "license": "BSD-3-Clause",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/necolas/react-native-web.git"
-  },
-  "tags": [
-    "react"
-  ],
-  "keywords": [
-    "react",
-    "react-component",
-    "react-native",
-    "web"
-  ],
-  "jest": {
-    "testEnvironment": "jsdom",
-    "timers": "fake",
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/enzyme-to-json/serializer"
-    ]
-  }
+  "license": "MIT"
 }
